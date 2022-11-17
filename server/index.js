@@ -1,12 +1,10 @@
-if (process.env.NODE_ENV !== "production") { // if in development
-    require('dotenv').config(); // .env file var -> process.env
-}
-
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const cookieParser = require("cookie-parser");
 const path = require('path');
+const http = require('http');
+const server = http.createServer(app);
 
 // parse json request body
 app.use(express.json());
@@ -18,8 +16,7 @@ app.use(cors({
 }));
 
 
-const socketPort = process.env.SOCKETPORT || 3002;
-const io = require('socket.io')(socketPort, {
+const io = require('socket.io')(server, {
     cors: {
         origin: true
     }
@@ -79,7 +76,7 @@ app.get('*', (req, res) =>
 // set handle error
 
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
+const port = process.env.PORT || 8080;
+server.listen(port, () => {
     console.log(`Server running on PORT ${port}`);
 })

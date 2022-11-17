@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 import { TextField, Button, Box, IconButton } from '@mui/material'
 import { ContentCopy } from '@mui/icons-material'
 import copy from 'copy-to-clipboard'
+import { SERVER_LINK } from '../serverlink';
 
 let msgWasSent = false;
 
@@ -15,7 +16,7 @@ const Room = ({ user, room, isAdmin, logoutHandler }) => {
 
     useEffect(() => {
         const newSocket = io(
-            'http://localhost:3002',
+            SERVER_LINK,
             { query: { id: user } }
         )
         newSocket.on('first-connection', conversations => setConversations(conversations));
