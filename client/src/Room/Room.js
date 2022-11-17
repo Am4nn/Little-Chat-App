@@ -56,7 +56,7 @@ const Room = ({ user, room, isAdmin, logoutHandler }) => {
             display: 'flex',
             flexDirection: 'column',
             padding: '0 0.5rem',
-            height: '100vh',
+            height: '95vh',
         }}>
             <div style={{ display: 'flex', justifyContent: 'space-around' }}>
                 <div>Room : {room}</div>
